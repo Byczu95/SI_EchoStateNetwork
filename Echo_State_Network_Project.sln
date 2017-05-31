@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryESN", "LibraryESN\LibraryESN.csproj", "{3D556D3A-09C7-4F22-92FF-83D4FA76139D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ESN_Console", "ESN_Console\ESN_Console.csproj", "{93751ECE-5791-4C32-A237-3A76CFB59AC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D556D3A-09C7-4F22-92FF-83D4FA76139D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D556D3A-09C7-4F22-92FF-83D4FA76139D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D556D3A-09C7-4F22-92FF-83D4FA76139D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D556D3A-09C7-4F22-92FF-83D4FA76139D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93751ECE-5791-4C32-A237-3A76CFB59AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93751ECE-5791-4C32-A237-3A76CFB59AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93751ECE-5791-4C32-A237-3A76CFB59AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93751ECE-5791-4C32-A237-3A76CFB59AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
