@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EchoStateNetwork.Model;
 
-namespace EchoStateNetwork.Test
+namespace ESN_Console
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
         }
     }
 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EchoStateNetwork.Model")]
+[assembly: AssemblyTitle("LibraryESN")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EchoStateNetwork.Model")]
+[assembly: AssemblyProduct("LibraryESN")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4b713fa2-b0dc-4c98-b3c0-4c3f47c013c0")]
+[assembly: Guid("bdc8fdf0-b599-4860-bbca-b09eff314352")]
 
 // Version information for an assembly consists of the following four values:
 //

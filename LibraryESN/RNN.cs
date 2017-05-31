@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EchoStateNetwork.Model
+namespace LibraryESN
 {
-    class Network
+    class RNN
     {
     }
 }
