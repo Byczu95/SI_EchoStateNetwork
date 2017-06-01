@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryESN
 {
-    class RNN
+    public class EchoStateNetwork
     {
     }
 }
