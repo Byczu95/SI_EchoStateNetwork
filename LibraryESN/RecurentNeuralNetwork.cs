@@ -31,7 +31,7 @@ namespace LibraryESN
         {
             int i = 0;
             int j = 0;
-            double output = 0;
+            double output = data;
 
             List<NeuronPath> path = new List<NeuronPath>();
 
@@ -47,7 +47,7 @@ namespace LibraryESN
                     if (_network[i, j] == 0) { }
                     else
                     {
-                        output = data * _network[i, j]; //Funkcja neuronu
+                        output = 1 - (output * _network[i, j]); //Higly temporary
                         path.Add(new NeuronPath(i, j, output));
                         i = j;
                     }
