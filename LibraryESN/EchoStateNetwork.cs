@@ -47,7 +47,7 @@ namespace LibraryESN
             W = Matrix<double>.Build.Random(reservoirSize, reservoirSize) - 0.5;
             //rhoW = max(abs(eigenvalues(W))
             rhoW = W.Evd().EigenValues.AbsoluteMaximum().Real;
-            W = W * rhoW;
+            W *= 1.25 / rhoW
 
             X = Matrix<double>.Build.Random(trainLenght-initLenght, initLenght + 1 + reservoirSize) *0;
 
