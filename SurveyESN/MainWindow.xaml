@@ -31,7 +31,6 @@
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="26"/>
-                <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
@@ -51,19 +50,13 @@
             <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="3" x:Name="leakLable" Text="Stopień wycieku: "/>
             <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="4" x:Name="leakValue" Text="null"/>
 
-            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" x:Name="conncetivityLable" Text="Stopień połąćzeń: "/>
-            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" x:Name="conncetivityValue" Text="null"/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" x:Name="woutLable" Text="Wektor wyjścia: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="3" x:Name="woutValue" Text="null"/>
 
-            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="3" x:Name="conncetionsLable" Text="Liczba połąćzeń: "/>
-            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="4" x:Name="conncetionsValue" Text="null"/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" x:Name="mseLable" Text="Średni błąd kwadratowy: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" x:Name="mseValue" Text="null"/>
 
-            <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" x:Name="woutLable" Text="Wektor wyjścia: "/>
-            <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" x:Name="woutValue" Text="null"/>
-
-            <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" x:Name="mseLable" Text="Średni błąd kwadratowy: "/>
-            <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" x:Name="mseValue" Text="null"/>
-
-            <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4" Orientation="Vertical">
+            <StackPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4" Orientation="Vertical">
                 <StackPanel  Orientation="Horizontal">
                     <Button Margin="10" x:Name="loadData" Content="Wczytaj dane" Width="100" Click="loadData_Click"/>
                     <TextBlock Margin="10"  x:Name="loadDataPath" VerticalAlignment="Center" Text="Nie wybrano pliku"/>

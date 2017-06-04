@@ -8,6 +8,7 @@ namespace LibraryESN
     {
         public List<double> ExpetedOutput;
         public List<Input> InputData;
+        public int DataLenght;
 
         public Data(string filePath)
         {

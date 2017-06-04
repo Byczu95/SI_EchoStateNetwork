@@ -28,8 +28,8 @@ namespace SurveyESN
         public MainWindow()
         {
             fileSelected = false;
-            CheckStatus();
             InitializeComponent();
+            CheckStatus();
         }
 
         public void CheckStatus()
@@ -38,10 +38,12 @@ namespace SurveyESN
             if (fileSelected)
             {
                 teach.IsEnabled = true;
+                initValue.IsEnabled = true;
             }
             else
             {
                 teach.IsEnabled = false;
+                initValue.IsEnabled = false;
             }
 
             // Check if ESN was teached
@@ -50,15 +52,18 @@ namespace SurveyESN
                 if (esn.teached == false)
                 {
                     askBox.IsEnabled = false;
+                    askButton.IsEnabled = false;
                 }
                 else
                 {
                     askBox.IsEnabled = true;
+                    askButton.IsEnabled = true;
                 }
             }
             catch (Exception e)
             {
                 askBox.IsEnabled = false;
+                askButton.IsEnabled = false;
             }
         }
 
