@@ -28,8 +28,9 @@ namespace SurveyESN
         public MainWindow()
         {
             fileSelected = false;
-            CheckStatus();
             InitializeComponent();
+            CheckStatus();
+
         }
 
         public void CheckStatus()
@@ -67,7 +68,21 @@ namespace SurveyESN
         // Utworzenie nowej sieci (okno z parametrami)
         private void File_New_Click(object sender, RoutedEventArgs e)
         {
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "File " + DateTime.Today.ToShortDateString(); // Default file name
+            dlg.DefaultExt = ".esn"; // Default file extension
+            dlg.Filter = "Esn file (.esn)|*.esn"; // Filter files by extension
 
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string filename = dlg.FileName;
+            }
         }
 
         // Otwarcie zapisanej wcześniej sieci
@@ -94,9 +109,9 @@ namespace SurveyESN
         {
             // Configure save file dialog box
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "File" + DateTime.Today.ToString(); // Default file name
+            dlg.FileName = "File " + DateTime.Today.ToShortDateString(); // Default file name
             dlg.DefaultExt = ".esn"; // Default file extension
-            dlg.Filter = "ESN file (.esn)|*.esn"; // Filter files by extension
+            dlg.Filter = "Esn file (.esn)|*.esn"; // Filter files by extension
 
             // Show save file dialog box
             Nullable<bool> result = dlg.ShowDialog();
@@ -133,8 +148,24 @@ namespace SurveyESN
         private void loadData_Click(object sender, RoutedEventArgs e)
         {
             // Wczytaj dane
-            // Wypisz ścieżkę w label loadDataPath
-            // Jeśli nie ma wyjątków to fileSelected = true
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "File"; // Default file name
+            dlg.DefaultExt = ".txt"; // Default file extension
+            dlg.Filter = "Txt file (.txt)|*.txt"; // Filter files by extension
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName; 
+                loadDataPath.Text = dlg.FileName;// Wypisz ścieżkę w label loadDataPath
+                fileSelected = true; // Jeśli nie ma wyjątków to fileSelected = true
+            }
+
             CheckStatus();
         }
 
