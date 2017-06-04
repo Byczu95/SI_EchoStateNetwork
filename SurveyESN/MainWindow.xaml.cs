@@ -73,19 +73,46 @@ namespace SurveyESN
         // Otwarcie zapisanej wcześniej sieci
         private void File_Open_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "File"; // Default file name
+            dlg.DefaultExt = ".esn"; // Default file extension
+            dlg.Filter = "ESN file (.esn)|*.esn"; // Filter files by extension
 
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName;
+            }
         }
 
         // Zapisanie obiektu sieci
         private void File_Save_Click(object sender, RoutedEventArgs e)
         {
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "File" + DateTime.Today.ToString(); // Default file name
+            dlg.DefaultExt = ".esn"; // Default file extension
+            dlg.Filter = "ESN file (.esn)|*.esn"; // Filter files by extension
 
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                // Save document
+                string filename = dlg.FileName;
+            }
         }
 
         // Zamknięcie programu
         private void File_Exit_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
 
@@ -107,7 +134,7 @@ namespace SurveyESN
         {
             // Wczytaj dane
             // Wypisz ścieżkę w label loadDataPath
-            // Jeśli nie ma tyjątków to fileSelected = true
+            // Jeśli nie ma wyjątków to fileSelected = true
             CheckStatus();
         }
 

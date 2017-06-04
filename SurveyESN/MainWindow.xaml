@@ -51,10 +51,10 @@
             <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="3" x:Name="leakLable" Text="Stopień wycieku: "/>
             <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="4" x:Name="leakValue" Text="null"/>
 
-            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" x:Name="conncetivityLable" Text="Stopień połąćzeń: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" x:Name="conncetivityLable" Text="Stopień połączeń: "/>
             <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" x:Name="conncetivityValue" Text="null"/>
 
-            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="3" x:Name="conncetionsLable" Text="Liczba połąćzeń: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="3" x:Name="conncetionsLable" Text="Liczba połączeń: "/>
             <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="4" x:Name="conncetionsValue" Text="null"/>
 
             <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" x:Name="woutLable" Text="Wektor wyjścia: "/>
