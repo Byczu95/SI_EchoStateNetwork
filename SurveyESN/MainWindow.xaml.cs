@@ -24,6 +24,7 @@ namespace SurveyESN
 
         // Status
         public bool fileSelected;
+        public String filePath;
 
         public MainWindow()
         {
@@ -134,14 +135,16 @@ namespace SurveyESN
         // Okno z nami
         private void Autors_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://www.facebook.com/szymon.kaszuba.1");
+            System.Diagnostics.Process.Start("https://www.facebook.com/adam.matuszak.5");
+            System.Diagnostics.Process.Start("https://www.facebook.com/byczu1");
         }
 
 
         // Okienko z linkami do dokumentaji/git
         private void Document_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://github.com/Tetrach121/SI_ESN");
         }
 
         // Wczytanie danych do nauki sieci
@@ -161,12 +164,18 @@ namespace SurveyESN
             if (result == true)
             {
                 // Open document
-                string filename = dlg.FileName; 
-                loadDataPath.Text = dlg.FileName;// Wypisz ścieżkę w label loadDataPath
+                filePath = dlg.FileName;
+                loadDataPath.Text = FileNameShow(dlg.FileName);// Wypisz ścieżkę w label loadDataPath
                 fileSelected = true; // Jeśli nie ma wyjątków to fileSelected = true
             }
 
             CheckStatus();
+        }
+
+        private string FileNameShow(string s)
+        {
+            string[] sSplit = s.Split('\\');
+            return "...\\" + sSplit[sSplit.Length - 2] + '\\' + sSplit[sSplit.Length - 1];
         }
 
         // Wprowadź zapytanie
