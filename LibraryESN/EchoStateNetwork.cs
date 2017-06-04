@@ -9,6 +9,8 @@ namespace LibraryESN
 {
     public class EchoStateNetwork
     {
+        public bool teached;
+
         public int trainLenght; // Długość ciągu uczącego
         public int testLenght; // Długość ciągu wynikowego
         public int initLenght; // Długość ignorowanego ciągu wyników inicjalnych

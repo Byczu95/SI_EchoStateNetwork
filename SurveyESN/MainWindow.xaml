@@ -14,15 +14,15 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" IsMainMenu="True" Width="{Binding ElementName=grid_Main,Path=ActualWidth}" DockPanel.Dock="Top">
             <MenuItem x:Name="File" Header="Plik">
-                <MenuItem x:Name="File_New" Header="Nowa sieć ESN"/>
-                <MenuItem x:Name="File_Open" Header="Otwórz sieć ESN"/>
-                <MenuItem x:Name="File_Save" Header="Zapisz sieć ESN"/>
+                <MenuItem x:Name="File_New" Header="Nowa sieć ESN" Click="File_New_Click"/>
+                <MenuItem x:Name="File_Open" Header="Otwórz sieć ESN" Click="File_Open_Click"/>
+                <MenuItem x:Name="File_Save" Header="Zapisz sieć ESN" Click="File_Save_Click"/>
                 <Separator/>
-                <MenuItem x:Name="File_Exit" Header="Zamknij program"/>
+                <MenuItem x:Name="File_Exit" Header="Zamknij program" Click="File_Exit_Click"/>
             </MenuItem>
             <MenuItem x:Name="Help" Header="Pomoc">
-                <MenuItem x:Name="Autors" Header="Autorzy"/>
-                <MenuItem x:Name="Document" Header="Dokumentacja"/>
+                <MenuItem x:Name="Autors" Header="Autorzy" Click="Autors_Click"/>
+                <MenuItem x:Name="Document" Header="Dokumentacja" Click="Document_Click"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1" x:Name="ESN">
@@ -65,19 +65,19 @@
 
             <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4" Orientation="Vertical">
                 <StackPanel  Orientation="Horizontal">
-                    <Button Margin="10" x:Name="loadData" Content="Wczytaj dane" Width="100"/>
+                    <Button Margin="10" x:Name="loadData" Content="Wczytaj dane" Width="100" Click="loadData_Click"/>
                     <TextBlock Margin="10"  x:Name="loadDataPath" VerticalAlignment="Center" Text="Nie wybrano pliku"/>
 
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal">
                     <TextBlock Margin="10" VerticalAlignment="Center" x:Name="initLable" Text="Pomijane wyników: "/>
                     <TextBox Margin="10" x:Name="initValue" Text="" Width="100"/>
-                    <Button Margin="10" x:Name="teach" Content="Ucz ESN" Width="100"/>
+                    <Button Margin="10" x:Name="teach" Content="Ucz ESN" Width="100" Click="teach_Click"/>
                     <ProgressBar Margin="10" Width="100"/>
                 </StackPanel>
                 <StackPanel  Orientation="Horizontal">
                     <TextBox Margin="10" x:Name="askBox" Text="" Width="100"/>
-                    <Button Margin="10" x:Name="askButton" Content="Zapytaj ESN" Width="100"/>
+                    <Button Margin="10" x:Name="askButton" Content="Zapytaj ESN" Width="100" Click="askButton_Click"/>
                     <TextBlock Margin="10" VerticalAlignment="Center" x:Name="anserw" Text="null" Width="175"/>
                 </StackPanel>
             </StackPanel>

@@ -20,9 +20,108 @@ namespace SurveyESN
     /// </summary>
     public partial class MainWindow : Window
     {
+        public LibraryESN.EchoStateNetwork esn;
+
+        // Status
+        public bool fileSelected;
+
         public MainWindow()
         {
+            fileSelected = false;
+            CheckStatus();
             InitializeComponent();
         }
+
+        public void CheckStatus()
+        {
+            // Check if data file is selected
+            if (fileSelected)
+            {
+                teach.IsEnabled = true;
+            }
+            else
+            {
+                teach.IsEnabled = false;
+            }
+
+            // Check if ESN was teached
+            try
+            {
+                if (esn.teached == false)
+                {
+                    askBox.IsEnabled = false;
+                }
+                else
+                {
+                    askBox.IsEnabled = true;
+                }
+            }
+            catch (Exception e)
+            {
+                askBox.IsEnabled = false;
+            }
+        }
+
+        #region Buttons
+
+        // Utworzenie nowej sieci (okno z parametrami)
+        private void File_New_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Otwarcie zapisanej wcześniej sieci
+        private void File_Open_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Zapisanie obiektu sieci
+        private void File_Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Zamknięcie programu
+        private void File_Exit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        // Okno z nami
+        private void Autors_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        // Okienko z linkami do dokumentaji/git
+        private void Document_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Wczytanie danych do nauki sieci
+        private void loadData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Wprowadź zapytanie
+        private void askButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Nauczaj sieć wczytanymi danymi
+        private void teach_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
     }
 }
