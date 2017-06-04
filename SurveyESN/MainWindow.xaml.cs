@@ -105,7 +105,10 @@ namespace SurveyESN
         // Wczytanie danych do nauki sieci
         private void loadData_Click(object sender, RoutedEventArgs e)
         {
-
+            // Wczytaj dane
+            // Wypisz ścieżkę w label loadDataPath
+            // Jeśli nie ma tyjątków to fileSelected = true
+            CheckStatus();
         }
 
         // Wprowadź zapytanie
