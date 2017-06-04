@@ -1,0 +1,86 @@
+﻿<Window x:Class="SurveyESN.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SurveyESN"
+        mc:Ignorable="d"
+        Title="Survey Echo State Network" Height="350" Width="525"
+        MinHeight="350" MinWidth="525" MaxHeight="350" MaxWidth="525">
+    <Grid x:Name="grid_Main">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" x:Name="Menu" HorizontalAlignment="Left" VerticalAlignment="Top" IsMainMenu="True" Width="{Binding ElementName=grid_Main,Path=ActualWidth}" DockPanel.Dock="Top">
+            <MenuItem x:Name="File" Header="Plik">
+                <MenuItem x:Name="File_New" Header="Nowa sieć ESN"/>
+                <MenuItem x:Name="File_Open" Header="Otwórz sieć ESN"/>
+                <MenuItem x:Name="File_Save" Header="Zapisz sieć ESN"/>
+                <Separator/>
+                <MenuItem x:Name="File_Exit" Header="Zamknij program"/>
+            </MenuItem>
+            <MenuItem x:Name="Help" Header="Pomoc">
+                <MenuItem x:Name="Autors" Header="Autorzy"/>
+                <MenuItem x:Name="Document" Header="Dokumentacja"/>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" x:Name="ESN">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="26"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="42" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Echo State Network - parametry"/>
+
+            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" x:Name="reservoirLable" Text="Wielokość rezerwuaru: " />
+            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" x:Name="reservoirValue" Text="null"/>
+
+            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="3" x:Name="leakLable" Text="Stopień wycieku: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="4" x:Name="leakValue" Text="null"/>
+
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" x:Name="conncetivityLable" Text="Stopień połąćzeń: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="2" x:Name="conncetivityValue" Text="null"/>
+
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="3" x:Name="conncetionsLable" Text="Liczba połąćzeń: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="4" x:Name="conncetionsValue" Text="null"/>
+
+            <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" x:Name="woutLable" Text="Wektor wyjścia: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" x:Name="woutValue" Text="null"/>
+
+            <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" x:Name="mseLable" Text="Średni błąd kwadratowy: "/>
+            <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" x:Name="mseValue" Text="null"/>
+
+            <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="4" Orientation="Vertical">
+                <StackPanel  Orientation="Horizontal">
+                    <Button Margin="10" x:Name="loadData" Content="Wczytaj dane" Width="100"/>
+                    <TextBlock Margin="10"  x:Name="loadDataPath" VerticalAlignment="Center" Text="Nie wybrano pliku"/>
+
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock Margin="10" VerticalAlignment="Center" x:Name="initLable" Text="Pomijane wyników: "/>
+                    <TextBox Margin="10" x:Name="initValue" Text="" Width="100"/>
+                    <Button Margin="10" x:Name="teach" Content="Ucz ESN" Width="100"/>
+                    <ProgressBar Margin="10" Width="100"/>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal">
+                    <TextBox Margin="10" x:Name="askBox" Text="" Width="100"/>
+                    <Button Margin="10" x:Name="askButton" Content="Zapytaj ESN" Width="100"/>
+                    <TextBlock Margin="10" VerticalAlignment="Center" x:Name="anserw" Text="null" Width="175"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
