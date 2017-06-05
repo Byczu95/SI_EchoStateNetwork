@@ -8,7 +8,7 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace SurveyESN
 {
-    class temp
+    public class temp
     {
         // Status
         public bool teached;
@@ -62,10 +62,10 @@ namespace SurveyESN
             data = new Data(path);
             X = Matrix<double>.Build.Random(data.DataLenght - ignoredInitialResults, ignoredInitialResults + 1 + size) * 0;
 
-            Yt = Matrix<double>.Build.Random(data.DataLenght - 1 - ignoredInitialResults, 1);
-            Yt.SetRow(0, data.InputData[data.DataLenght - 1 - ignoredInitialResults].);
+            Yt = Matrix<double>.Build.Random(data.DataLenght - 1 - ignoredInitialResults, 1); // Macierz wartości spodziewanych
+            Yt.SetRow(0, data.GetExpetedOutputArray(0, ignoredInitialResults)); //Ustawienie pomijanych wyników
 
-            InputDataIntoReservoir(); // Przejście pierszych pomijanych wyników
+            InputDataIntoReservoir(ignoredInitialResults); // Przejście pierszych pomijanych wyników
 
             double reg = (double)1; // Doładność double
 
@@ -77,34 +77,73 @@ namespace SurveyESN
             LearnProcess(ignoredInitialResults);
         }
 
-        public void InputDataIntoReservoir()
+        public void InputDataIntoReservoir(int ignoredDataCount)
         {
             x = Matrix<double>.Build.Random(size, 1) * 0;
 
-            for (int t = 0; t < testLenght; t++)
+            for (int t = 0; t < data.InputData.Count; t++)
             {
-                double[] u = data.InputData[t].values.ToArray();
-                x = (1 - a) * x + a * Matrix<double>.Tanh(Win * Matrix<double>.Build.Dense(1, u.Length, u) + W * x);
+                double u = data.InputData[t].x;
+                x = (1 - a) * x + a * Matrix<double>.Tanh(Win * Matrix<double>.Build.Dense(1, 1, u) + W * x);
 
-                if (t > initLenght)
+                if (t >= ignoredDataCount)
                 {
-                    double[] temp = new double[u.Length + x.ToArray().Length];
+                    double[] temp = new double[1 + x.ToArray().Length];
                     double[] tempX = x.Row(0).ToArray();
-                    for (int i = 0; i < temp.Length; i++)
+                    temp[0] = u;
+                    for (int i = 1; i < temp.Length; i++)
                     {
-
-                        if (i < u.Length)
-                        {
-                            temp[i] = u[i];
-                        }
-                        else
-                        {
-                            temp[i] = tempX[i - tempX.Length];
-                        }
+                        temp[i] = tempX[i - tempX.Length];
                     }
                     X.SetRow(t, Vector<double>.Build.DenseOfArray(temp));
                 }
             }
+        }
+
+        private void LearnProcess(int initResults)
+        {
+            int testLenght = data.DataLenght - initResults;
+            Y = Matrix<double>.Build.Dense(testLenght, 1);
+            int count = data.InputData.Count;
+
+            for (int t = initResults; t < data.DataLenght; t++)
+            {
+                double u = data.InputData[t].x;
+                x = (1 - a) * x + a * Matrix<double>.Tanh(Win * u + W * x);
+
+                double[] temp = new double[1 + x.ToArray().Length];
+                double[] tempX = x.Row(0).ToArray();
+                temp[0] = u;
+                for (int i = 1; i < temp.Length; i++)
+                {
+
+                    temp[i] = tempX[i - tempX.Length];
+                }
+
+                double y = (Wout * Matrix<double>.Build.Dense(1, temp.Length, temp))[0, 0];
+                Y.SetRow(t, Vector<double>.Build.Dense(1, y));
+            }
+            mse = 0; // Minimal square error
+            for (int i = 0; i < testLenght; i++)
+            {
+                mse += Math.Sqrt(Y[1, i] - Yt[1, i]);
+            }
+            mse /= testLenght;
+        }
+
+        public double Ask(double inputData)
+        {
+            x = (1 - a) * x + a * Matrix<double>.Tanh(Win * inputData + W * x);
+
+            double[] temp = new double[1 + x.ToArray().Length];
+            double[] tempX = x.Row(0).ToArray();
+            temp[0] = inputData;
+            for (int i = 1; i < temp.Length; i++)
+            {
+                temp[i] = tempX[i - tempX.Length];
+            }
+
+            return (Wout * Matrix<double>.Build.Dense(1, temp.Length, temp))[0, 0];
         }
     }
 }

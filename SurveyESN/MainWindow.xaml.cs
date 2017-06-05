@@ -24,7 +24,7 @@ namespace SurveyESN
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ESN esn;
+        public temp esn;
 
         // Status
         public bool fileSelected;
@@ -106,7 +106,7 @@ namespace SurveyESN
 
                     //Deserialize the hashtable from the file and
                     //assign the reference to the local variable.
-                    esn = (ESN)formatter.Deserialize(fs);
+                    //esn = (ESN)formatter.Deserialize(fs);
                 }
                 catch (Exception ex)
                 {
@@ -205,10 +205,7 @@ namespace SurveyESN
         // Wprowadź zapytanie
         private void askButton_Click(object sender, RoutedEventArgs e)
         {
-            string q = askBox.Text;
-            double[] qData = new double[1];
-            qData[0] = double.Parse(q);
-            double ans = esn.Ask(qData);
+            double ans = esn.Ask(double.Parse(askBox.Text));
             answer.Text = ans.ToString();
         }
 
@@ -228,7 +225,7 @@ namespace SurveyESN
 
         public void generateNewESN()
         {
-            esn = new ESN(1000, 0.3);
+            esn = new temp(1000, 0.3);
 
             reservoirValue.Dispatcher.Invoke(() => { reservoirValue.Text = "1000"; });
             leakValue.Dispatcher.Invoke(() => { leakValue.Text = "0.3";});

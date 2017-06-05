@@ -68,7 +68,7 @@ namespace LibraryESN
             X = Matrix<double>.Build.Random(data.DataLenght - ignoredInitialResults, ignoredInitialResults + 1 + size) * 0;
 
             Yt = Matrix<double>.Build.Random(data.DataLenght - 1 - ignoredInitialResults, 1);
-            Yt.SetRow(0, data.GetExpetedOutput(data.DataLenght - 1 - ignoredInitialResults));
+            //Yt.SetRow(0, data.GetExpetedOutput(data.DataLenght - 1 - ignoredInitialResults));
 
             reservoir.ActivateReservoir(); // Przejście pierszych pomijanych wyników
 
@@ -84,39 +84,39 @@ namespace LibraryESN
 
         private void LearnProcess(int initResults)
         {
-            int testLenght = data.DataLenght - initResults;
-            Y = Matrix<double>.Build.Dense(testLenght, 1);
-            int count = data.InputData.Count;
+            //int testLenght = data.DataLenght - initResults;
+            //Y = Matrix<double>.Build.Dense(testLenght, 1);
+            //int count = data.InputData.Count;
             
-            for(int t = initResults; t < data.DataLenght; t++)
-            {
-                double[] u = data.InputData[t].values.ToArray();
-                reservoir.x = (1 - a) * reservoir.x + a * Matrix<double>.Tanh(Win * Matrix<double>.Build.Dense(1, u.Length, u) + W * reservoir.x);
+            //for(int t = initResults; t < data.DataLenght; t++)
+            //{
+            //    double[] u = data.InputData[t].values.ToArray();
+            //    reservoir.x = (1 - a) * reservoir.x + a * Matrix<double>.Tanh(Win * Matrix<double>.Build.Dense(1, u.Length, u) + W * reservoir.x);
 
-                double[] temp = new double[u.Length + reservoir.x.ToArray().Length];
-                double[] tempX = reservoir.x.Row(0).ToArray();
-                for (int i = 0; i < temp.Length; i++)
-                {
+            //    double[] temp = new double[u.Length + reservoir.x.ToArray().Length];
+            //    double[] tempX = reservoir.x.Row(0).ToArray();
+            //    for (int i = 0; i < temp.Length; i++)
+            //    {
 
-                    if (i < u.Length)
-                    {
-                        temp[i] = u[i];
-                    }
-                    else
-                    {
-                        temp[i] = tempX[i - tempX.Length];
-                    }
-                }
+            //        if (i < u.Length)
+            //        {
+            //            temp[i] = u[i];
+            //        }
+            //        else
+            //        {
+            //            temp[i] = tempX[i - tempX.Length];
+            //        }
+            //    }
 
-                double y = (Wout * Matrix<double>.Build.Dense(1, temp.Length, temp))[0, 0];
-                Y.SetRow(t, Vector<double>.Build.Dense(1, y));
-            }
-            mse = 0; // Minimal square error
-            for (int i = 0; i < testLenght; i++)
-            {
-                mse += Math.Sqrt(Y[1, i] - Yt[1, i]);
-            }
-            mse /= testLenght;
+            //    double y = (Wout * Matrix<double>.Build.Dense(1, temp.Length, temp))[0, 0];
+            //    Y.SetRow(t, Vector<double>.Build.Dense(1, y));
+            //}
+            //mse = 0; // Minimal square error
+            //for (int i = 0; i < testLenght; i++)
+            //{
+            //    mse += Math.Sqrt(Y[1, i] - Yt[1, i]);
+            //}
+            //mse /= testLenght;
         }
 
         public double Ask(double[] inputData)

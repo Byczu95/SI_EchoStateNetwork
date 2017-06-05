@@ -56,7 +56,7 @@ namespace LibraryESN
             reservoir = new RecurentNeuralNetwork(this);
 
             Yt = Matrix<double>.Build.Random(trainLenght - 1 - initLenght, 1);
-            Yt.SetRow(0,data.GetExpetedOutput(trainLenght - 1 - initLenght));
+            //Yt.SetRow(0,data.GetExpetedOutput(trainLenght - 1 - initLenght));
 
             reservoir.ActivateReservoir();
             double reg = (double)1;
@@ -78,45 +78,45 @@ namespace LibraryESN
 
         public double ActivateNetwork()
         {
-            Y = Matrix<double>.Build.Dense(testLenght, 1);
-            int count = data.InputData.Count;
-            double[] u = data.InputData[trainLenght + 1].values.ToArray();
-            for(int t = 0; t < count; t++)
-            {
-                reservoir.x = (1 - a) * reservoir.x + a * Matrix<double>.Tanh(Win * Matrix<double>.Build.Dense(1, u.Length, u) + W * reservoir.x);
+            //Y = Matrix<double>.Build.Dense(testLenght, 1);
+            //int count = data.InputData.Count;
+            //double[] u = data.InputData[trainLenght + 1].values.ToArray();
+            //for(int t = 0; t < count; t++)
+            //{
+            //    reservoir.x = (1 - a) * reservoir.x + a * Matrix<double>.Tanh(Win * Matrix<double>.Build.Dense(1, u.Length, u) + W * reservoir.x);
 
-                double[] temp = new double[u.Length + reservoir.x.ToArray().Length];
-                double[] tempX = reservoir.x.Row(0).ToArray();
-                for (int i = 0; i < temp.Length; i++)
-                {
+            //    double[] temp = new double[u.Length + reservoir.x.ToArray().Length];
+            //    double[] tempX = reservoir.x.Row(0).ToArray();
+            //    for (int i = 0; i < temp.Length; i++)
+            //    {
 
-                    if (i < u.Length)
-                    {
-                        temp[i] = u[i];
-                    }
-                    else
-                    {
-                        temp[i] = tempX[i - tempX.Length];
-                    }
-                }
+            //        if (i < u.Length)
+            //        {
+            //            temp[i] = u[i];
+            //        }
+            //        else
+            //        {
+            //            temp[i] = tempX[i - tempX.Length];
+            //        }
+            //    }
 
-                double y = (Wout * Matrix<double>.Build.Dense(1,temp.Length,temp))[0,0];
-                Y.SetRow(t,Vector<double>.Build.Dense(1,y));
-                if (state == State.GenerativeMode)
-                {
-                    // TODO
-                }
-                else
-                {
-                    u = data.InputData[trainLenght + 1 + t].values.ToArray();
-                }
-            }
+            //    double y = (Wout * Matrix<double>.Build.Dense(1,temp.Length,temp))[0,0];
+            //    Y.SetRow(t,Vector<double>.Build.Dense(1,y));
+            //    if (state == State.GenerativeMode)
+            //    {
+            //        // TODO
+            //    }
+            //    else
+            //    {
+            //        u = data.InputData[trainLenght + 1 + t].values.ToArray();
+            //    }
+            //}
             double mse = 0; // Minimal square error
-            for(int i = 0; i < errorLenght; i++)
-            {
-                mse += Math.Sqrt(Y[1, i] - Yt[1, i]);
-            }
-            mse /= errorLenght;
+            //for(int i = 0; i < errorLenght; i++)
+            //{
+            //    mse += Math.Sqrt(Y[1, i] - Yt[1, i]);
+            //}
+            //mse /= errorLenght;
             return mse;
         }
     }

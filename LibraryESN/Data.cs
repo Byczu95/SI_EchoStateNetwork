@@ -28,11 +28,17 @@ namespace LibraryESN
             }
         }
 
-        //internal Vector<double> GetExpetedOutput(int v)
-        //{
-        //    //Wczytać pierwsze elementy
-        //    throw new NotImplementedException();
-        //}
+        public double[] GetExpetedOutputArray(int start, int lenght)
+        {
+            double[] result = new double[lenght - start];
+
+            for(int i = start; i < lenght; i++)
+            {
+                result[i] = InputData[i].y;
+            }
+
+            return result;
+        }
     }
 
     public class Input
