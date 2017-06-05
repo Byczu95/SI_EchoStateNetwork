@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>network.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MathNet.Numerics, Version=3.19.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.3.19.0\lib\net40\MathNet.Numerics.dll</HintPath>
@@ -104,6 +107,21 @@
       <Project>{3d556d3a-09c7-4f22-92ff-83d4fa76139d}</Project>
       <Name>LibraryESN</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SI.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SI_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SI_logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SI_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="network.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

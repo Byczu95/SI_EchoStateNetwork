@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using LibraryESN;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 
 namespace SurveyESN
 {
@@ -76,9 +77,10 @@ namespace SurveyESN
         // Utworzenie nowej sieci (okno z parametrami)
         private void File_New_Click(object sender, RoutedEventArgs e)
         {
-            esn = new ESN(1000,0.3);
-            reservoirValue.Text = "1000";
-            leakValue.Text = "0.3";
+            showMessageBox("Now will generate ESN" + Environment.NewLine + "You will be inform about end of process", "Start the process");
+            File_New.IsEnabled = false;
+            Thread th = new Thread(() => generateNewESN());
+            th.Start();
         }
 
         // Otwarcie zapisanej wcześniej sieci
@@ -108,7 +110,7 @@ namespace SurveyESN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to deserialize. Reason: " + ex.Message);
+                    showMessageBox("Failed to deserialize. Reason: " + ex.Message, "Error");
                     throw;
                 }
                 fs.Close();
@@ -142,7 +144,7 @@ namespace SurveyESN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to serialize. Reason: " + ex.Message);
+                    showMessageBox("Failed to serialize. Reason: " + ex.Message, "Error");
                     throw;
                 }
                 fs.Close();
@@ -159,9 +161,7 @@ namespace SurveyESN
         // Okno z nami
         private void Autors_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.facebook.com/szymon.kaszuba.1");
-            System.Diagnostics.Process.Start("https://www.facebook.com/adam.matuszak.5");
-            System.Diagnostics.Process.Start("https://www.facebook.com/byczu1");
+            showMessageBox("Adam Matuszak" + Environment.NewLine + "Łukasz Knop" + Environment.NewLine + "Szymon Kaszuba", "Autors");
         }
 
 
@@ -224,6 +224,24 @@ namespace SurveyESN
 
         #endregion
 
+        #region Logic
 
+        public void generateNewESN()
+        {
+            esn = new ESN(1000, 0.3);
+
+            reservoirValue.Dispatcher.Invoke(() => { reservoirValue.Text = "1000"; });
+            leakValue.Dispatcher.Invoke(() => { leakValue.Text = "0.3";});
+            File_New.Dispatcher.Invoke(() => { File_New.IsEnabled = true; });
+
+            showMessageBox("Complete generate ESN", "Process completed");
+        }
+
+        static public void showMessageBox(String msg, String title = "Message Box")
+        {
+            MessageBox.Show(msg, title, MessageBoxButton.OK);
+        }
+
+        #endregion
     }
 }
