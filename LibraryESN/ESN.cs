@@ -7,7 +7,7 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace LibraryESN
 {
-    class ESN
+    public class ESN
     {
         // Status
         public bool teached;

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LibraryESN;
 
 namespace SurveyESN
 {
@@ -20,7 +21,7 @@ namespace SurveyESN
     /// </summary>
     public partial class MainWindow : Window
     {
-        public LibraryESN.EchoStateNetwork esn;
+        public ESN esn;
 
         // Status
         public bool fileSelected;
@@ -31,7 +32,6 @@ namespace SurveyESN
             fileSelected = false;
             InitializeComponent();
             CheckStatus();
-
         }
 
         public void CheckStatus()
@@ -74,21 +74,7 @@ namespace SurveyESN
         // Utworzenie nowej sieci (okno z parametrami)
         private void File_New_Click(object sender, RoutedEventArgs e)
         {
-            // Configure save file dialog box
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "File " + DateTime.Today.ToShortDateString(); // Default file name
-            dlg.DefaultExt = ".esn"; // Default file extension
-            dlg.Filter = "Esn file (.esn)|*.esn"; // Filter files by extension
-
-            // Show save file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Process save file dialog box results
-            if (result == true)
-            {
-                // Save document
-                string filename = dlg.FileName;
-            }
+            esn = new ESN(1000,0.3);
         }
 
         // Otwarcie zapisanej wcześniej sieci
@@ -186,13 +172,19 @@ namespace SurveyESN
         // Wprowadź zapytanie
         private void askButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string q = askBox.Text;
+            double[] qData = new double[1];
+            qData[0] = double.Parse(q);
+            double ans = esn.Ask(qData);
+            anserw.Text = ans.ToString();
         }
 
         // Nauczaj sieć wczytanymi danymi
         private void teach_Click(object sender, RoutedEventArgs e)
         {
-
+            esn.Learn(filePath, int.Parse(initValue.Text));
+            esn.teached = true;
+            CheckStatus();
         }
 
         #endregion
