@@ -109,18 +109,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="SI.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="SI_icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="SI_logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="SI_ico.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="network.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
