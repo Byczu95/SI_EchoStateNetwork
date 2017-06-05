@@ -37,8 +37,8 @@ namespace LibraryESN
 
     public class Input
     {
-        int x;
-        double y;
+        public int x;
+        public double y;
 
         public Input(int _x, double _y)
         {
