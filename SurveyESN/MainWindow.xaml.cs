@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LibraryESN;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SurveyESN
 {
@@ -89,12 +91,27 @@ namespace SurveyESN
 
             // Show open file dialog box
             Nullable<bool> result = dlg.ShowDialog();
-
+            FileStream fs;
             // Process open file dialog box results
             if (result == true)
             {
                 // Open document
                 string filename = dlg.FileName;
+                fs = new FileStream("DataFile.dat", FileMode.Open);
+                try
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+
+                    //Deserialize the hashtable from the file and
+                    //assign the reference to the local variable.
+                    esn = (ESN)formatter.Deserialize(fs);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to deserialize. Reason: " + ex.Message);
+                    throw;
+                }
+                fs.Close();
             }
         }
 
@@ -103,18 +120,32 @@ namespace SurveyESN
         {
             // Configure save file dialog box
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "File " + DateTime.Today.ToShortDateString(); // Default file name
+            dlg.FileName = "ESN  " + DateTime.Today.ToShortDateString(); // Default file name
             dlg.DefaultExt = ".esn"; // Default file extension
             dlg.Filter = "Esn file (.esn)|*.esn"; // Filter files by extension
 
             // Show save file dialog box
             Nullable<bool> result = dlg.ShowDialog();
-
+            FileStream fs;
             // Process save file dialog box results
             if (result == true)
             {
                 // Save document
                 string filename = dlg.FileName;
+                fs = new FileStream(filename, FileMode.Create);
+
+                // Construct a BinaryFormatter and use it to serialize the data to the stream.
+                BinaryFormatter formatter = new BinaryFormatter();
+                try
+                {
+                    formatter.Serialize(fs, esn);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to serialize. Reason: " + ex.Message);
+                    throw;
+                }
+                fs.Close();
             }
         }
 
@@ -178,7 +209,7 @@ namespace SurveyESN
             double[] qData = new double[1];
             qData[0] = double.Parse(q);
             double ans = esn.Ask(qData);
-            anserw.Text = ans.ToString();
+            answer.Text = ans.ToString();
         }
 
         // Nauczaj sieć wczytanymi danymi
