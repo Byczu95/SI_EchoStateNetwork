@@ -14,9 +14,12 @@ namespace LibraryESN
 
         public Data(string filePath)
         {
+            InputData = new List<Input>();
+            ExpetedOutput = new List<double>();
+
             using (StreamReader sr = File.OpenText(filePath))
             {
-                string s = "";
+                string s;
                 string[] record;
                 while ((s = sr.ReadLine()) != null)
                 {
@@ -24,6 +27,7 @@ namespace LibraryESN
                     InputData.Add(new Input(int.Parse(record[0]),double.Parse(record[1])));
                 }
                 sr.Close();
+                DataLenght = InputData.Count;
             }
         }
 
