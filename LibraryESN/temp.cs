@@ -62,7 +62,7 @@ namespace SurveyESN
             data = new Data(path);
             X = Matrix<double>.Build.Random(data.DataLenght - ignoredInitialResults, ignoredInitialResults + 1 + size) * 0;
 
-            Yt = Matrix<double>.Build.Random(data.DataLenght - 1 - ignoredInitialResults, 1); // Macierz wartości spodziewanych
+            Yt = Matrix<double>.Build.Random(1, ignoredInitialResults); // data.DataLenght - 1 - ignoredInitialResults, 1 Macierz wartości spodziewanych
             Yt.SetRow(0, data.GetExpetedOutputArray(0, ignoredInitialResults)); //Ustawienie pomijanych wyników
 
             InputDataIntoReservoir(ignoredInitialResults); // Przejście pierszych pomijanych wyników
