@@ -75,6 +75,8 @@ namespace SurveyESN
         private void File_New_Click(object sender, RoutedEventArgs e)
         {
             esn = new ESN(1000,0.3);
+            reservoirValue.Text = "1000";
+            leakValue.Text = "0.3";
         }
 
         // Otwarcie zapisanej wcześniej sieci
@@ -184,6 +186,8 @@ namespace SurveyESN
         {
             esn.Learn(filePath, int.Parse(initValue.Text));
             esn.teached = true;
+            woutValue.Text = esn.Wout.ToString();
+            mseValue.Text = esn.mse.ToString();
             CheckStatus();
         }
 
