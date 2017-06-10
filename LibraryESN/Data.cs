@@ -30,7 +30,7 @@ namespace LibraryESN
 
         public double[] GetExpetedOutputArray(int start, int lenght)
         {
-            double[] result = new double[lenght - start];
+            double[] result = new double[lenght];
 
             for(int i = start; i < lenght; i++)
             {
@@ -43,13 +43,21 @@ namespace LibraryESN
 
     public class Input
     {
-        public int x;
+        public double x;
         public double y;
 
-        public Input(int _x, double _y)
+        public Input(double _x, double _y)
         {
             x = _x;
             y = _y;
+        }
+
+        public double[] ToArray()
+        {
+            double[] d = new double[2];
+            d[0] = x;
+            d[1] = y;
+            return d;
         }
     }
 }

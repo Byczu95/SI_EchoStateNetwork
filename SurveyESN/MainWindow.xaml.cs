@@ -216,6 +216,7 @@ namespace SurveyESN
             esn.teached = true;
             woutValue.Text = esn.Wout.ToString();
             mseValue.Text = esn.mse.ToString();
+            MessageBox.Show(esn.mse.ToString());
             CheckStatus();
         }
 
