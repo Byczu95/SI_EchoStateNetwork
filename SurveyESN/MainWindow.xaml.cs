@@ -24,7 +24,7 @@ namespace SurveyESN
     /// </summary>
     public partial class MainWindow : Window
     {
-        public temp esn;
+        public EchoStateNetwork esn;
 
         // Status
         public bool fileSelected;
@@ -226,7 +226,7 @@ namespace SurveyESN
 
         public void generateNewESN()
         {
-            esn = new temp(1000, 0.3);
+            esn = new EchoStateNetwork(1000, 0.3);
 
             reservoirValue.Dispatcher.Invoke(() => { reservoirValue.Text = "1000"; });
             leakValue.Dispatcher.Invoke(() => { leakValue.Text = "0.3";});
