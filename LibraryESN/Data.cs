@@ -5,6 +5,7 @@ using System.IO;
 
 namespace LibraryESN
 {
+    [Serializable]
     public class Data
     {
         public List<Input> InputData;
@@ -21,7 +22,7 @@ namespace LibraryESN
                 while ((s = sr.ReadLine()) != null)
                 {
                     record = s.Split(';');
-                    InputData.Add(new Input(int.Parse(record[0]),double.Parse(record[1])));
+                    InputData.Add(new Input(double.Parse(record[0]),double.Parse(record[1])));
                 }
                 sr.Close();
                 DataLenght = InputData.Count;
@@ -40,14 +41,15 @@ namespace LibraryESN
             return result;
         }
     }
-
+    [Serializable]
     public class Input
     {
-        public double x;
+        public double x; 
         public double y;
 
         public Input(double _x, double _y)
         {
+            
             x = _x;
             y = _y;
         }

@@ -7,6 +7,7 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace LibraryESN
 {
+    [Serializable]
     public class RecurentNeuralNetwork
     {
         EchoStateNetwork esn;

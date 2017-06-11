@@ -7,6 +7,8 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace LibraryESN
 {
+
+    [Serializable]
     public class ESN
     {
         // Status

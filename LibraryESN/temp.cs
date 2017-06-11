@@ -8,6 +8,7 @@ using MathNet.Numerics.LinearAlgebra;
 
 namespace SurveyESN
 {
+    [Serializable]
     public class temp
     {
         // Status
@@ -116,8 +117,6 @@ namespace SurveyESN
                     double y = (Wout * temMat.Transpose())[0, 0];
                     Y.SetRow(t-ignoredDataCount, Vector<double>.Build.Dense(1, y));
                 }
-
-                
             }
 
             mse = 0; // Minimal square error

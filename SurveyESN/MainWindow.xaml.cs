@@ -99,14 +99,14 @@ namespace SurveyESN
             {
                 // Open document
                 string filename = dlg.FileName;
-                fs = new FileStream("DataFile.dat", FileMode.Open);
+                fs = new FileStream(filename, FileMode.Open);
                 try
                 {
                     BinaryFormatter formatter = new BinaryFormatter();
 
                     //Deserialize the hashtable from the file and
                     //assign the reference to the local variable.
-                    //esn = (ESN)formatter.Deserialize(fs);
+                    esn = (temp)formatter.Deserialize(fs);
                 }
                 catch (Exception ex)
                 {
