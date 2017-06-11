@@ -45,12 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data.cs" />
-    <Compile Include="EchoStateNetwork.cs" />
-    <Compile Include="ESN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RNN.cs" />
-    <Compile Include="RecurentNeuralNetwork.cs" />
-    <Compile Include="temp.cs" />
+    <Compile Include="EchoStateNetwork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
