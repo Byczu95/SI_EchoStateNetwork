@@ -106,7 +106,7 @@ namespace SurveyESN
 
                     //Deserialize the hashtable from the file and
                     //assign the reference to the local variable.
-                    esn = (temp)formatter.Deserialize(fs);
+                    esn = (EchoStateNetwork)formatter.Deserialize(fs);
                 }
                 catch (Exception ex)
                 {
@@ -199,7 +199,11 @@ namespace SurveyESN
         private string FileNameShow(string s)
         {
             string[] sSplit = s.Split('\\');
-            return "...\\" + sSplit[sSplit.Length - 2] + '\\' + sSplit[sSplit.Length - 1];
+            if(sSplit.Length > 5)
+                return "...\\" + sSplit[sSplit.Length - 4] + '\\' + sSplit[sSplit.Length - 3] + sSplit[sSplit.Length - 2] + '\\' + sSplit[sSplit.Length - 1];
+            if (sSplit.Length > 3)
+                return "...\\" + sSplit[sSplit.Length - 2] + '\\' + sSplit[sSplit.Length - 1];
+            return s;
         }
 
         // Wprowadź zapytanie
@@ -214,7 +218,6 @@ namespace SurveyESN
         {
             esn.Learn(filePath, int.Parse(initValue.Text));
             esn.teached = true;
-            woutValue.Text = esn.Wout.ToString();
             mseValue.Text = esn.mse.ToString();
             MessageBox.Show(esn.mse.ToString());
             CheckStatus();
