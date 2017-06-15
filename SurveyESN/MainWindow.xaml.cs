@@ -107,6 +107,14 @@ namespace SurveyESN
                     //Deserialize the hashtable from the file and
                     //assign the reference to the local variable.
                     esn = (EchoStateNetwork)formatter.Deserialize(fs);
+                    mseValue.Text = esn.mse.ToString();
+                    reservoirValue.Text = "1000";
+                    leakValue.Text = "0.3";
+                    askBox.IsEnabled = true;
+                    askButton.IsEnabled = true;
+                    teach.IsEnabled = false;
+                    initValue.IsEnabled = false;
+                    loadData.IsEnabled = false;
                 }
                 catch (Exception ex)
                 {
