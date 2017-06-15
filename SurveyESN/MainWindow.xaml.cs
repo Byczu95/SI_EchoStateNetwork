@@ -140,7 +140,12 @@ namespace SurveyESN
                 BinaryFormatter formatter = new BinaryFormatter();
                 try
                 {
-                    formatter.Serialize(fs, esn);
+                    EchoStateNetwork temp = esn;
+                    temp.data = null;
+                    temp.Y = null;
+                    temp.Yt = null;
+                    temp.X = null;
+                    formatter.Serialize(fs, temp);
                 }
                 catch (Exception ex)
                 {
