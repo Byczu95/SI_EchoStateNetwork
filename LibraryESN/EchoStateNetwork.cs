@@ -12,7 +12,7 @@ namespace SurveyESN
     public class EchoStateNetwork
     {
         // Status
-        public bool teached;
+        public bool isTeached;
 
         // Parametry sieci
         public double a; // Stopień wycieku
@@ -33,7 +33,7 @@ namespace SurveyESN
         //Konstruktor
         public EchoStateNetwork(int reservoirSize, double leakingRate)
         {
-            teached = false;
+            isTeached = false;
             InitializeParameters(reservoirSize, leakingRate); // <- a
             NormalizeWeights(); // Zapewnij rozrzut wag
         }
@@ -76,6 +76,7 @@ namespace SurveyESN
 
             //Uczenie
             LearnProcess(ignoredInitialResults,ignoredInitialResults);
+            isTeached = true;
         }
 
         public void InputDataIntoReservoir(int ignoredDataCount)

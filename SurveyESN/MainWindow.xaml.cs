@@ -54,7 +54,7 @@ namespace SurveyESN
             // Check if ESN was teached
             try
             {
-                if (esn.teached == false)
+                if (esn.isTeached == false)
                 {
                     askBox.IsEnabled = false;
                     askButton.IsEnabled = false;
@@ -108,13 +108,29 @@ namespace SurveyESN
                     //assign the reference to the local variable.
                     esn = (EchoStateNetwork)formatter.Deserialize(fs);
                     mseValue.Text = esn.mse.ToString();
-                    reservoirValue.Text = "1000";
-                    leakValue.Text = "0.3";
-                    askBox.IsEnabled = true;
-                    askButton.IsEnabled = true;
-                    teach.IsEnabled = false;
-                    initValue.IsEnabled = false;
-                    loadData.IsEnabled = false;
+                    reservoirValue.Text = esn.size.ToString();
+                    if (esn.mse == 0) { mseValue.Text = ""; } else { mseValue.Text = esn.mse.ToString(); }
+                    leakValue.Text = esn.a.ToString(); 
+                    if (esn.isTeached == true)
+                    {
+                        askBox.IsEnabled = true;
+                        askButton.IsEnabled = true;
+                        teach.IsEnabled = false;
+                        initValue.IsEnabled = false;
+                    }
+                    else
+                    {
+                        askBox.IsEnabled = false;
+                        askButton.IsEnabled = false;
+                        teach.IsEnabled = true;
+                        initValue.IsEnabled = true;
+                        loadData.IsEnabled = true;
+                    }
+                    if(loadDataPath.Text.Equals("Nie wybrano pliku"))
+                    {
+                        teach.IsEnabled = false;
+                        initValue.IsEnabled = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -230,12 +246,10 @@ namespace SurveyESN
         private void teach_Click(object sender, RoutedEventArgs e)
         {
             esn.Learn(filePath, int.Parse(initValue.Text));
-            esn.teached = true;
             mseValue.Text = esn.mse.ToString();
             MessageBox.Show(esn.mse.ToString());
             CheckStatus();
         }
-
         #endregion
 
         #region Logic
@@ -255,7 +269,6 @@ namespace SurveyESN
         {
             MessageBox.Show(msg, title, MessageBoxButton.OK);
         }
-
         #endregion
     }
 }
