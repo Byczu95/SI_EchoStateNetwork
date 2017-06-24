@@ -40,7 +40,7 @@ namespace SurveyESN
         public void CheckStatus()
         {
             // Check if data file is selected
-            if (fileSelected)
+            if (fileSelected && esn != null)
             {
                 teach.IsEnabled = true;
                 initValue.IsEnabled = true;
@@ -109,7 +109,7 @@ namespace SurveyESN
                     esn = (EchoStateNetwork)formatter.Deserialize(fs);
                     mseValue.Text = esn.mse.ToString();
                     reservoirValue.Text = esn.size.ToString();
-                    if (esn.mse == 0) { mseValue.Text = ""; } else { mseValue.Text = esn.mse.ToString(); }
+                    if (esn.mse == 0) { mseValue.Text = ""; } else { mseValue.Text = esn.mse.ToString(); }  
                     leakValue.Text = esn.a.ToString(); 
                     if (esn.isTeached == true)
                     {
