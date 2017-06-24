@@ -16,6 +16,7 @@ using LibraryESN;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
+using System.Globalization;
 
 namespace SurveyESN
 {
@@ -40,7 +41,7 @@ namespace SurveyESN
         public void CheckStatus()
         {
             // Check if data file is selected
-            if (fileSelected && esn != null)
+            if (fileSelected || esn != null)
             {
                 teach.IsEnabled = true;
                 initValue.IsEnabled = true;
@@ -238,7 +239,18 @@ namespace SurveyESN
         // Wprowadź zapytanie
         private void askButton_Click(object sender, RoutedEventArgs e)
         {
-            double ans = esn.Ask(double.Parse(askBox.Text));
+            double input;
+
+            //Try parsing in the current culture
+            if (!double.TryParse(askBox.Text, System.Globalization.NumberStyles.Any, CultureInfo.CurrentCulture, out input) &&
+                //Then try in US english
+                !double.TryParse(askBox.Text, System.Globalization.NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out input) &&
+                //Then in neutral language
+                !double.TryParse(askBox.Text, System.Globalization.NumberStyles.Any, CultureInfo.InvariantCulture, out input))
+            {
+                input = 0;
+            }
+            double ans = esn.Ask(input);
             answer.Text = ans.ToString();
         }
 
