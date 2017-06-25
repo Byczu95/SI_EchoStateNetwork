@@ -78,7 +78,7 @@ namespace SurveyESN
         // Utworzenie nowej sieci (okno z parametrami)
         private void File_New_Click(object sender, RoutedEventArgs e)
         {
-            showMessageBox("Now will generate ESN" + Environment.NewLine + "You will be inform about end of process", "Start the process");
+            showMessageBox("Zaczyna się generowanie sieci neuronowej" + Environment.NewLine + "Zostaniesz poinformowany/a o zakończeniu procesu za pomocą komunikatu", "Generowanie ESN");
             File_New.IsEnabled = false;
             Thread th = new Thread(() => generateNewESN());
             th.Start();
@@ -135,7 +135,7 @@ namespace SurveyESN
                 }
                 catch (Exception ex)
                 {
-                    showMessageBox("Failed to deserialize. Reason: " + ex.Message, "Error");
+                    showMessageBox("Deserializacja nieudana. Powód: " + ex.Message, "Błąd");
                     throw;
                 }
                 fs.Close();
@@ -174,7 +174,7 @@ namespace SurveyESN
                 }
                 catch (Exception ex)
                 {
-                    showMessageBox("Failed to serialize. Reason: " + ex.Message, "Error");
+                    showMessageBox("Serializacja nieudana. Powód: " + ex.Message, "Błąd");
                     throw;
                 }
                 fs.Close();
@@ -191,7 +191,7 @@ namespace SurveyESN
         // Okno z nami
         private void Autors_Click(object sender, RoutedEventArgs e)
         {
-            showMessageBox("Adam Matuszak" + Environment.NewLine + "Łukasz Knop" + Environment.NewLine + "Szymon Kaszuba", "Autors");
+            showMessageBox("Adam Matuszak" + Environment.NewLine + "Łukasz Knop" + Environment.NewLine + "Szymon Kaszuba", "Autorzy");
         }
 
 
@@ -274,7 +274,7 @@ namespace SurveyESN
             leakValue.Dispatcher.Invoke(() => { leakValue.Text = "0.3";});
             File_New.Dispatcher.Invoke(() => { File_New.IsEnabled = true; });
 
-            showMessageBox("Complete generate ESN", "Process completed");
+            showMessageBox("Sieć wygenerowana", "Zakończono proces");
         }
 
         static public void showMessageBox(String msg, String title = "Message Box")
