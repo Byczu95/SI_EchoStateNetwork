@@ -40,6 +40,8 @@ namespace SurveyESN
 
         public void CheckStatus()
         {
+
+
             // Check if data file is selected
             if (fileSelected || esn != null)
             {
@@ -257,9 +259,10 @@ namespace SurveyESN
         // Nauczaj sieć wczytanymi danymi
         private void teach_Click(object sender, RoutedEventArgs e)
         {
+            showMessageBox("Rozpoczynam uczenie sieci", "Proces uczenia");
             esn.Learn(filePath, int.Parse(initValue.Text));
-            mseValue.Text = esn.mse.ToString();
-            MessageBox.Show(esn.mse.ToString());
+            showMessageBox("Sieć została wyuczona");
+
             CheckStatus();
         }
         #endregion
@@ -277,7 +280,7 @@ namespace SurveyESN
             showMessageBox("Sieć wygenerowana", "Zakończono proces");
         }
 
-        static public void showMessageBox(String msg, String title = "Message Box")
+        static public void showMessageBox(String msg, String title = "Informacja")
         {
             MessageBox.Show(msg, title, MessageBoxButton.OK);
         }
