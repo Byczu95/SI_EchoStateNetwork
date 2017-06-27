@@ -82,6 +82,10 @@ namespace SurveyESN
         {
             showMessageBox("Zaczyna się generowanie sieci neuronowej" + Environment.NewLine + "Zostaniesz poinformowany/a o zakończeniu procesu za pomocą komunikatu", "Generowanie ESN");
             File_New.IsEnabled = false;
+            reservoirValue.Text = "null";
+            leakValue.Text = "null";
+            mseValue.Text = "null";
+            answer.Text = "";
             Thread th = new Thread(() => generateNewESN());
             th.Start();
         }
@@ -253,7 +257,7 @@ namespace SurveyESN
                 input = 0;
             }
             double ans = esn.Ask(input);
-            answer.Text = ans.ToString();
+            answer.Text = "Wynik: " + ans.ToString();
         }
 
         // Nauczaj sieć wczytanymi danymi
@@ -261,6 +265,7 @@ namespace SurveyESN
         {
             showMessageBox("Rozpoczynam uczenie sieci", "Proces uczenia");
             esn.Learn(filePath, int.Parse(initValue.Text));
+            mseValue.Text = esn.mse.ToString();
             showMessageBox("Sieć została wyuczona");
 
             CheckStatus();
